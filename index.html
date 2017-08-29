@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ReactJS and ES6</title>
+</head>
+<body>
+	<div class="root"></div>
+	<script src="dist/bundle.js"></script>
+	<style type="text/css">
+		._topDropdown {
+			display: flex;
+			align-items: center;
+			border: 1px solid #ddd;
+			position: relative;
+		}
+		._topDropdown span {
+			position: absolute;
+    		right: 20px;
+		}
+
+		button._dropdownToggle {
+			cursor: pointer;
+			flex-grow: 1;
+			background-color: white;
+			height: 38px;
+			border: none;
+		}
+
+		ul._dropdown-menu {
+			padding-left: 0px;
+			list-style: none;
+			margin: 3px 0 0 0;
+			border: 1px solid #ddd;
+		}
+		ul._dropdown-menu li {
+			padding: 10px;
+			cursor: pointer;
+		}
+	</style>
+</body>
+</html>
