@@ -3,18 +3,40 @@ import React from 'react';
 class Dropdown extends React.Component {
 	constructor(props) {
 		super(props)
+		this.state = {
+			menuOpen: false
+		}
+	}
+
+	toggleClickMenu() {
+		(this.state.menuOpen ? this.setState({menuOpen: false}) : this.setState({menuOpen: true}))
+	}
+
+	// componentDidUpdate(prevProps, prevState) {
+	// 		console.log(prevState.menuOpen)
+	// 	if(prevState.menuOpen) {
+	// 		document.addEventListener('click', this.setState({menuOpen: false}))
+	// 		console.log('have')
+	// 	} else {
+	// 		document.removeEventListener('click', true)
+	// 	}
+
+	// }
+
+	chooseMenu(value) {
+		this.setState({menuOpen: false})
 	}
 
 	render() {
 		var subList = this.props.subList.map((text, index) =>
-			<li key={index}>
+			<li key={index} onClick={this.chooseMenu.bind(this, text)}>
 				{text}
 			</li>
 		)
 		return(
-			<div className='_dropdown'>
+			<div className={ this.state.menuOpen ? '_dropdown _dropdownOpen' : '_dropdown _dropdownClose'}>
 				<div className='_topDropdown'>
-					<button type='button' className='_dropdownToggle'>{this.props.title}</button>
+					<button type='button' className='_dropdownToggle' onClick={this.toggleClickMenu.bind(this)}>{this.props.title}</button>
 					<span>v</span>
 				</div>
 				<ul className='_dropdown-menu'>
