@@ -25,16 +25,23 @@ class Dropdown extends React.Component {
 
 	chooseMenu(value) {
 		this.setState({menuOpen: false})
+		console.log(value)
+	}
+
+	closeDropMenu(e) {
+		console.log('outside dropmenu');
+		e.preventDefault()
+		this.setState({menuOpen: false})
 	}
 
 	render() {
 		var subList = this.props.subList.map((text, index) =>
 			<li key={index} onClick={this.chooseMenu.bind(this, text)}>
-				{text}
+				<a href='https://stackoverflow.com/questions/32553158/detect-click-outside-react-component'>{text}</a>
 			</li>
 		)
 		return(
-			<div className={ this.state.menuOpen ? '_dropdown _dropdownOpen' : '_dropdown _dropdownClose'}>
+			<div className={ this.state.menuOpen ? '_dropdown _dropdownOpen' : '_dropdown _dropdownClose'} onBlur={this.closeDropMenu.bind(this)}>
 				<div className='_topDropdown'>
 					<button type='button' className='_dropdownToggle' onClick={this.toggleClickMenu.bind(this)}>{this.props.title}</button>
 					<span>v</span>
