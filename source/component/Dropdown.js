@@ -6,44 +6,35 @@ class Dropdown extends React.Component {
 		this.state = {
 			menuOpen: false
 		}
+		this.hideMenu = this.hideMenu.bind(this)
 	}
 
-	toggleClickMenu() {
-		(this.state.menuOpen ? this.setState({menuOpen: false}) : this.setState({menuOpen: true}))
+	showMenu() {
+		this.setState({menuOpen: true})
+		document.addEventListener("click", this.hideMenu);
 	}
-
-	// componentDidUpdate(prevProps, prevState) {
-	// 		console.log(prevState.menuOpen)
-	// 	if(prevState.menuOpen) {
-	// 		document.addEventListener('click', this.setState({menuOpen: false}))
-	// 		console.log('have')
-	// 	} else {
-	// 		document.removeEventListener('click', true)
-	// 	}
-
-	// }
 
 	chooseMenu(value) {
-		this.setState({menuOpen: false})
 		console.log(value)
 	}
 
-	closeDropMenu(e) {
+	hideMenu() {
 		console.log('outside dropmenu');
-		e.preventDefault()
 		this.setState({menuOpen: false})
+		document.removeEventListener("click", this.hideMenu);
 	}
 
 	render() {
+		console.log('render')
 		var subList = this.props.subList.map((text, index) =>
 			<li key={index} onClick={this.chooseMenu.bind(this, text)}>
 				<a href='https://stackoverflow.com/questions/32553158/detect-click-outside-react-component'>{text}</a>
 			</li>
 		)
 		return(
-			<div className={ this.state.menuOpen ? '_dropdown _dropdownOpen' : '_dropdown _dropdownClose'} onBlur={this.closeDropMenu.bind(this)}>
+			<div className={ this.state.menuOpen ? '_dropdown _dropdownOpen' : '_dropdown _dropdownClose'}>
 				<div className='_topDropdown'>
-					<button type='button' className='_dropdownToggle' onClick={this.toggleClickMenu.bind(this)}>{this.props.title}</button>
+					<button type='button' className='_dropdownToggle' onClick={this.showMenu.bind(this)}>{this.props.title}</button>
 					<span>v</span>
 				</div>
 				<ul className='_dropdown-menu'>
