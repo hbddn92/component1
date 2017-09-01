@@ -25,7 +25,7 @@ class Dropdown extends React.Component {
 	}
 
 	render() {
-		console.log('render')
+		console.log('render Dropdown')
 		var subList = this.props.subList.map((text, index) =>
 			<li key={index} onClick={this.chooseMenu.bind(this, text)}>
 				<a href='https://stackoverflow.com/questions/32553158/detect-click-outside-react-component'>{text}</a>
