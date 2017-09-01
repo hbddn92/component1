@@ -14,7 +14,7 @@ class SearchMenu extends React.Component {
 	}
 
 	render() {
-		console.log('render1')
+		console.log('render SearchMenu')
 		var listMenu = this.props.listMenu.map((content, index) => 
 			<li key={index} onMouseDown={this.chooseValue.bind(this, content)}>
 				{content}
@@ -64,7 +64,7 @@ class Search extends React.Component {
 	}
 
 	render() {
-		console.log('render')
+		console.log('render Search')
 		return(
 			<div className={(this.state.isOpen ? '_search _searchOpen' : '_search _searchClose')}>
 				<input 
