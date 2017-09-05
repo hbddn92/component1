@@ -1,6 +1,6 @@
 import Dropdown from './Dropdown';
 import Search from './Search';
-import Input from './Input';
+import Input from './InputSet';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -8,7 +8,8 @@ class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			example: false
+			example: false,
+			initialValue: 'hell'
 		}
 	}
 
@@ -18,9 +19,11 @@ class App extends React.Component {
 		console.log(this.input2.getValue());
 		setTimeout(function(){ 
 			self.setState({
-				example: true
+				example: true,
 			})
+
 		}, 3000);
+		this.input.setValue('hell changed')
 	}
 
 	render() {
@@ -35,6 +38,8 @@ class App extends React.Component {
 				type='text'
 				require={true}
 				haveErr={this.state.example}
+				textErr='field is require'
+				initialValue={this.state.initialValue}
 				ref={node => this.input = node}
 			/>
 			<Input
