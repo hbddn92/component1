@@ -1,6 +1,6 @@
 import Dropdown from './Dropdown';
 import Search from './Search';
-import Input from './Input';
+import Input from './InputSet';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
