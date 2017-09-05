@@ -4,10 +4,11 @@ class Input extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			hasError: false
+			hasError: false,
+			value: this.props.initialValue
 		}
-		this.getValue = this.getValue.bind(this);
-		this.validate = this.validate.bind(this);
+		this.getValue 		= this.getValue.bind(this);
+		this.handleChange   = this.handleChange.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -20,7 +21,7 @@ class Input extends React.Component {
 		console.log('asdf')
 		let value = this.input.value;
 		if(this.props.require) {
-			if(value && this.validate(value)) {
+			if(value) {
 				this.setState({hasError: false})
 				return value
 			} else {
@@ -32,26 +33,26 @@ class Input extends React.Component {
 		}
 	}
 
-	setValue() {
+	setValue(vl) {
+		this.setState({
+			value: vl
+		})
+	}
 
+	handleChange(event) {
+		this.setState({
+			value: event.target.value
+		})
 	}
 
 	reset() {
 
 	}
 
-	validate(value) {
-		var template = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-		if(this.props.type = 'email') {
-			if(template.test(value))
-				return false
-		}
-	}
-
 	render() {
 		console.log('render input')
 		let classBlock = '_blockInput'
-		let contentErr = 'please fill input'
+		let contentErr = this.props.textErr
 
 		if(this.state.hasError) {
 			classBlock = '_blockInput errors'
@@ -65,6 +66,8 @@ class Input extends React.Component {
 					ref = {node => this.input = node}
 					type={this.props.type}
 					placeholder={this.props.placeholder}
+					value={this.state.value}
+					onChange={this.handleChange}
 				/>
 				<p className='_errNotify'>
 					{contentErr}
@@ -75,10 +78,13 @@ class Input extends React.Component {
 }
 
 Input.defaultProps = {
-	display: true,
 	haveErr: false,
+	textErr: 'Field is require',
+	display: true,
 	require: false,
 	type: 'text',
+	initialValue: '',
+
 }
 
 Input.propTypes = {
