@@ -1,6 +1,7 @@
 import Dropdown from './Dropdown';
 import Search from './Search';
 import Input from './InputSet';
+import Checkbox from './Checkbox';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -47,6 +48,7 @@ class App extends React.Component {
 				haveErr={this.state.example}
 				ref={node => this.input2 = node}
 			/>
+			<Checkbox />
 			<span onClick={this.click.bind(this)}>Click</span>
 		</div>
 		)
